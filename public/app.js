@@ -121,7 +121,7 @@ form.addEventListener("submit", async event => {
 speakButton.addEventListener("click", async () => {
   if (!currentPlan) return;
   speakButton.disabled = true;
-  stopButton.disabled = false;
+  stopButton.disabled = true;
   speechStatus.textContent = "Creating your voice guide with Murf…";
   audioPlayer.classList.add("hidden");
   try {
@@ -139,7 +139,9 @@ speakButton.addEventListener("click", async () => {
     audioPlayer.src = data.audioUrl;
     audioPlayer.classList.remove("hidden");
     await audioPlayer.play();
+    stopButton.disabled = false;
     speechStatus.textContent = "Your voice guide is ready.";
+    audioPlayer.onended = () => { stopButton.disabled = true; };
   } catch (error) {
     speechStatus.textContent = error.message || "Speech generation failed.";
   } finally {
