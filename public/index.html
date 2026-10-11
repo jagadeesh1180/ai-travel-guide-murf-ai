@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="Plan a trip with Gemini and listen to your travel guide with Murf AI.">
+  <title>WanderVoice — AI Travel Guide</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="WanderVoice home"><span class="brand-mark">✦</span> WanderVoice</a>
+    <span class="top-note">Your next journey, thoughtfully planned</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">GEMINI × MURF AI</div>
+      <h1>Make a plan.<br><span>Hear the world.</span></h1>
+      <p>Build a personal travel itinerary, then turn it into a spoken guide you can take along.</p>
+      <div class="hero-pills"><span>✦ Tailored itineraries</span><span>♫ Voice narration</span><span>⌁ Practical tips</span></div>
+    </section>
+
+    <section class="workspace">
+      <form id="plan-form" class="planner panel">
+        <div class="section-heading">
+          <div><span class="step">01</span><h2>Design your trip</h2></div>
+          <p>Tell us what your journey looks like.</p>
+        </div>
+        <label for="destination">Where do you want to go?</label>
+        <input id="destination" name="destination" placeholder="e.g. Kyoto, Japan" maxlength="160" required>
+        <div class="form-row">
+          <div>
+            <label for="days">Trip length</label>
+            <select id="days" name="days">
+              <option value="1">1 day</option><option value="2">2 days</option><option value="3" selected>3 days</option>
+              <option value="4">4 days</option><option value="5">5 days</option><option value="7">7 days</option>
+              <option value="10">10 days</option><option value="14">14 days</option>
+            </select>
+          </div>
+          <div>
+            <label for="budget">Budget style</label>
+            <select id="budget" name="budget">
+              <option value="budget">Budget-friendly</option><option value="moderate" selected>Comfortable</option><option value="premium">Premium</option>
+            </select>
+          </div>
+        </div>
+        <label for="interests">What do you love doing?</label>
+        <textarea id="interests" name="interests" rows="3" maxlength="500" placeholder="Food, nature, history, hidden gems, family activities…"></textarea>
+        <button id="plan-button" class="primary" type="submit"><span>✦</span> Create my itinerary</button>
+        <p class="fine-print">AI suggestions can be inaccurate. Verify transport, opening hours, entry requirements, and safety information with official sources.</p>
+      </form>
+
+      <section class="results panel" aria-live="polite">
+        <div class="section-heading">
+          <div><span class="step">02</span><h2>Your travel story</h2></div>
+          <p id="result-caption">Your itinerary will appear here.</p>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-art" aria-hidden="true"><span>✈</span><i>✦</i><b>⌁</b></div>
+          <h3>Your next chapter starts here.</h3>
+          <p>Choose a destination and create an itinerary to begin.</p>
+        </div>
+        <div id="loading" class="loading hidden"><span class="spinner"></span><p>Mapping out a memorable journey…</p></div>
+        <article id="plan-output" class="plan-output hidden"></article>
+        <div id="result-actions" class="result-actions hidden">
+          <button id="speak-button" class="secondary" type="button">♫ Listen with Murf</button>
+          <button id="stop-button" class="text-button" type="button" disabled>Stop audio</button>
+          <audio id="audio-player" controls class="hidden"></audio>
+          <p id="speech-status" class="status" role="status"></p>
+        </div>
+      </section>
+    </section>
+    <footer><span>WanderVoice</span><span>Plan with curiosity. Travel with care.</span></footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
