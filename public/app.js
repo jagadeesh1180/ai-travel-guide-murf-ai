@@ -27,8 +27,7 @@ function escapeHtml(value) {
   }[character]));
 }
 
-// Small Markdown renderer for headings, lists, emphasis, code, and paragraphs.
-// All raw text is HTML-escaped before limited formatting is applied.
+// All model-generated text is HTML-escaped before limited Markdown formatting.
 function renderMarkdown(markdown) {
   const lines = escapeHtml(markdown).replace(/\r/g, "").split("\n");
   let html = "";
@@ -126,7 +125,6 @@ speakButton.addEventListener("click", async () => {
   speechStatus.textContent = "Creating your voice guide with Murf…";
   audioPlayer.classList.add("hidden");
   try {
-    // Read plain text rather than sending Markdown decoration to speech synthesis.
     const plainText = currentPlan
       .replace(/^#{1,6}\s+/gm, "")
       .replace(/[\*_#`]/g, "")
